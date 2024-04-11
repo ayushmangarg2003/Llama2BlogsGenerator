@@ -5,21 +5,17 @@ from langchain_community.llms import CTransformers
 
 # Generation Function Defined
 def getLlamaResponse(input_text,no_words,blog_style):
-   st.write("1")
    llm = CTransformers(model='model\llama-2-7b-chat.ggmlv3.q8_0.bin',model_type='llama',config={
      'max_new_tokens':256,
      'temperature':0.01
     })
-   st.write("2") 
    template = "Write a Blog for {blog_style} job profile for a topic {input_text} within {no_words} words."
    prompt = PromptTemplate(input_variables=["blog_style","input_text","no_words"],
                           template=template)
    st.write(prompt)
-   st.write("3")
    st.write(prompt.format(blog_style=blog_style,input_text=input_text,no_words=no_words ))
    response = llm("Hello")
    # response = llm(prompt.format(blog_style=blog_style,input_text=input_text,no_words=no_words ))
-   st.write("4")
    st.write(response)
    return response
 
